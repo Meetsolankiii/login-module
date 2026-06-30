@@ -27,7 +27,8 @@ module.exports = async (req, res) => {
   const urlPath = req.url;
 
   // 🚪 ROUTE A: LOGIN HANDSHAKE & OTP DISPATCH
-  if (urlPath === "/api/login" && req.method === "POST") {
+  // ✅ FIX: Matches local '/api/login' and live Vercel '/login'
+  if ((urlPath === "/api/login" || urlPath === "/login") && req.method === "POST") {
     let body = "";
     req.on("data", chunk => { body += chunk; });
     req.on("end", async () => {
@@ -84,7 +85,8 @@ module.exports = async (req, res) => {
   }
   
   // 🔑 ROUTE B: MULTI-FACTOR VERIFICATION
-  else if (urlPath === "/api/verify-2fa" && req.method === "POST") {
+  // ✅ FIX: Matches local '/api/verify-2fa' and live Vercel '/verify-2fa'
+  else if ((urlPath === "/api/verify-2fa" || urlPath === "/verify-2fa") && req.method === "POST") {
     let body = "";
     req.on("data", chunk => { body += chunk; });
     req.on("end", () => {
