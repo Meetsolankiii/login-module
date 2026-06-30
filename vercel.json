@@ -15,12 +15,17 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/login",
+      "dest": "/backend/server.cjs"
+    },
+    {
+      "src": "/api/verify-2fa",
       "dest": "/backend/server.cjs"
     },
     {
       "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "dest": "/assets/$1",
+      "headers": { "cache-control": "public, max-age=31536000, immutable" }
     },
     {
       "src": "/(.*)",
