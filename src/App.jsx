@@ -1,45 +1,32 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './Components/Navbar';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import './App.css';
 
 function App() {
   return (
     <Router>
-      <div className="app-container">
-        <nav style={{ background: "#0f172a", padding: "15px 30px", display: "flex", gap: "20px", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ color: "#ffffff", fontWeight: "700", fontSize: "1.2rem" }}>🛡️ Meet.Dev 2FA Module</div>
-          <div style={{ display: "flex", gap: "15px" }}>
-            <Link to="/" style={{ color: "#cbd5e1", textDecoration: "none", fontWeight: "500" }}>Home</Link>
-            <Link to="/login" style={{ color: "#cbd5e1", textDecoration: "none", fontWeight: "500" }}>Login</Link>
-            <Link to="/register" style={{ color: "#cbd5e1", textDecoration: "none", fontWeight: "500" }}>Register</Link>
-          </div>
-        </nav>
-
-        <main style={{ padding: "20px" }}>
-          <Routes>
-            <Route path="/" element={<HomeView />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-        </main>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </Router>
   );
 }
 
-// Simple internal landing view component block
-function HomeView() {
+function Home() {
   return (
-    <div style={{ textAlign: "center", marginTop: "100px", fontFamily: "sans-serif" }}>
-      <h1 style={{ color: "#1e293b", fontSize: "2.5rem" }}>Welcome to the Secure Identity Gateway</h1>
-      <p style={{ color: "#64748b", fontSize: "1.1rem", maxWidth: "600px", margin: "20px auto" }}>
-        This isolated module demonstrates a robust 2FA authentication pattern. Click on the <strong>Login</strong> option above to request and verify a single-use passcode token delivered to your inbox.
+    <div className="container text-center py-5">
+      <h1 className="fw-bold display-5 mb-3">Welcome to the Secure Identity Gateway</h1>
+      <p className="lead text-muted max-w-2xl mx-auto mb-4" style={{ maxWidth: "600px" }}>
+        This isolated module demonstrates a robust 2FA authentication pattern. Click below to test the workflow.
       </p>
-      <div style={{ marginTop: "30px" }}>
-        <Link to="/login" style={{ background: "#2563eb", color: "#fff", padding: "12px 24px", borderRadius: "6px", textDecoration: "none", fontWeight: "600", marginRight: "10px" }}>Test 2FA Login</Link>
-        <Link to="/register" style={{ background: "#16a34a", color: "#fff", padding: "12px 24px", borderRadius: "6px", textDecoration: "none", fontWeight: "600" }}>Create Test User</Link>
+      <div className="d-flex justify-content-center gap-3">
+        <a href="/login" className="btn btn-primary btn-lg px-4 shadow-sm">Test 2FA Login</a>
+        <a href="/register" className="btn btn-success btn-lg px-4 shadow-sm">Create Test User</a>
       </div>
     </div>
   );
